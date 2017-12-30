@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-05 15:29:26
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-20 22:45:24
+* @Last Modified time: 2017-12-30 20:37:39
 */
 var webpack             = require('webpack');
 var ExtractTextPlugin   = require("extract-text-webpack-plugin");
@@ -17,6 +17,7 @@ var getHtmlConfig = function (name, title) {
     return{
         template: './src/view/' + name + '.html',
         filename: 'view/' + name + '.html',
+        favicon : './favicon.ico',
         title  : title,
         inject  :true,
         hash    :true,
@@ -44,9 +45,9 @@ var config = {
         'result':['./src/page/result/index.js']
      },
      output: {
-         path: './dist',
-         publicPath:'/dist',
-         filename: 'js/[name].js'
+         path       : __dirname + '/dist/',
+         publicPath :'dev' === WEBPACK_ENV ? '/dist/': '//s.happymmall.com/mmall-fe/dist/',
+         filename   : 'js/[name].js'
      },
      externals:{
         'jquery':'window.jQuery'
